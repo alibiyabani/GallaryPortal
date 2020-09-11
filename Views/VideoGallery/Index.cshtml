@@ -1,0 +1,83 @@
+﻿﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVideo.cshtml";
+}
+
+    <style>
+        #videoGallery .VideoImage {
+            background-color: black;
+            opacity: .8;
+            transform: translate(0, -63px);
+        }
+
+            #videoGallery .VideoImage div {
+                display: flex;
+                justify-content: space-between;
+                padding: .3rem;
+                align-items: center;
+            }
+
+            #videoGallery .VideoImage i {
+                color: red;
+                padding: .2rem
+            }
+
+        #videoGallery img {
+            object-position: 100% -31px;
+            object-fit: contain;
+        }
+    </style>
+
+
+    <div class="site-section mt-5 pt-5" data-aos="fade">
+        <div class="container">
+
+            <div class="row justify-content-center mt-5">
+
+                <div class="col-md-7">
+                    <div class="row mb-5">
+                        <div class="col-12 ">
+                            <h2 class="site-section-heading text-center">Video Gallery</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" id="videoGallery">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var arr = []
+            $.ajax({
+                type: "GET",
+                url:"@Url.Action("GetAllVideo", "VideoGallery")",
+                success: function(response)
+                {
+                    arr = response
+                    var htmlString = '';
+                        for(i=0; i< arr.length; i++)
+                        {
+                            htmlString += '<a href="https://www.youtube.com/watch?v='+arr[i].VideoID+'" data-toggle="lightbox" class="col-md-4"><img class="img-fluid" src="https://img.youtube.com/vi/'+arr[i].VideoID+'/hqdefault.jpg"><div class="VideoImage"><div><span>'+arr[i].VideoName+'</span><i  class="fa fa-play-circle"></i></div></div></a>';
+                        }
+                    $('#videoGallery').append(htmlString);
+
+                }
+            });
+        });
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+
+    });
+    </script>
+}
+

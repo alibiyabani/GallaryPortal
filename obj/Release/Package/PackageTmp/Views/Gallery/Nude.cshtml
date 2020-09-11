@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Nude";
+    Layout = "~/Views/Shared/_LayoutGallery.cshtml";
+}
+
+<div class="site-section mt-5 pt-5" data-aos="fade">
+    <div class="container-fluid">
+
+        <div class="row justify-content-center mt-5">
+
+            <div class="col-md-7">
+                <div class="row mb-5">
+                    <div class="col-12 ">
+                        <h2 class="site-section-heading text-center">Nude</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" id="lightgallery">
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var arr = []
+            $.ajax({
+                type: "GET",
+                url:"@Url.Action("CatId", "Gallery",new { id = '2'})",
+                success: function(response)
+                {
+                    arr = response
+                    var htmlString = '';
+                        for(i=0; i< arr.length; i++)
+                        {
+                            htmlString += '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item pb-5"  data-aos="fade" data-src=" ' + arr[i].imgUrl + '" data-sub-html="<h4>'+arr[i].ItemName+'</h4>"><a href="#"><img style="border-radius: 5px;box-shadow: 1px 1px 20px rgba(255,255,255,.4);" src="' + arr[i].imgUrl + '" alt="IMage" class="img-fluid"></a></div>';
+                            //htmlString += '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item pb-5" data-aos="fade" data-src="/images/big-images/nature_big_1.jpg" data-sub-html="<h4>Fading Light</h4>"><a href="#"><img src="/images/nature_small_1.jpg" alt="IMage" class="img-fluid"></a></div>';
+                        }
+                    $('#lightgallery').append(htmlString);
+                    $('#lightgallery').lightGallery();
+
+                }
+            });
+        });
+    </script>
+}
+

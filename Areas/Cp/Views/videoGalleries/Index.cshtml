@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GallaryPortal.Models.videoGallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Cp/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-success btn-sm" href="@Url.Action("Create", "videoGalleries")">New Item</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actice)
+            </th>
+            <th>
+
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Actice)
+        </td>
+        <td>
+            <img src="https://img.youtube.com/vi/@Url.Content(item.VideoID)/hqdefault.jpg" style="max-width:50px; border-radius:5px; box-shadow:0 0 5px rgba(0,0,0,.3)" />
+        </td>
+        <td>
+            <a class="btn btn-info btn-sm" href="@Url.Action("Edit", "videoGalleries", new { id = item.id })">Edit</a>
+            <a class="btn btn-success btn-sm" href="@Url.Action("Details", "videoGalleries", new { id = item.id })">Detail</a>
+            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "videoGalleries", new { id = item.id })">Delete</a>
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,38 @@
+﻿@model GallaryPortal.Models.videoGallery
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Cp/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>videoGallery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <img class="img-fluid" src="https://img.youtube.com/vi/@Url.Content(Model.VideoID)/hqdefault.jpg" style="border-radius:5px; box-shadow:0 0 5px rgba(0,0,0,.3)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,44 @@
+﻿@model GallaryPortal.Models.videoGallery
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Cp/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>videoGallery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            <img class="img-fluid" src="https://img.youtube.com/vi/@Url.Content(Model.VideoID)/hqdefault.jpg" style="border-radius:5px; box-shadow:0 0 5px rgba(0,0,0,.3)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Actice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

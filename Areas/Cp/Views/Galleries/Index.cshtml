@@ -1,0 +1,79 @@
+﻿@model IEnumerable<GallaryPortal.Models.Gallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Cp/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a class="btn btn-success btn-sm" href="@Url.Action("Create", "Galleries")">New Item</a>
+
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                
+            </th>
+
+            <th>
+                Name
+            </th>
+            <th>
+                Active
+            </th>
+            <th>
+                Date
+            </th>
+
+            <th>
+                Slide
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            <img src="@Url.Content(item.imgUrl)" style="max-width:50px; border-radius:5px; box-shadow:0 0 5px rgba(0,0,0,.3)" />
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivePassive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishData)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowInSlider)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.GallaryCategory)
+        </td>
+        <td>
+            <a class="btn btn-info btn-sm" href="@Url.Action("Edit", "Galleries", new { id = item.id })">Edit</a>
+            <a class="btn btn-success btn-sm" href="@Url.Action("Details", "Galleries", new { id = item.id })">Detail</a>
+            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Galleries", new { id = item.id })">Delete</a>
+        </td>
+
+    </tr>
+        }
+
+    </table>
+</div>
